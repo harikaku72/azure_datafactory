@@ -48,8 +48,69 @@
 					},
 					"enableStaging": false,
 					"translator": {
-						"value": "@pipeline().RunId",
-						"type": "Expression"
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "product_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "product_id",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "product_name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "product_name",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "category",
+									"type": "String"
+								},
+								"sink": {
+									"name": "category",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "price",
+									"type": "String"
+								},
+								"sink": {
+									"name": "price",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "created_at",
+									"type": "String"
+								},
+								"sink": {
+									"name": "created_at",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "runid",
+									"type": "String"
+								},
+								"sink": {
+									"name": "runid",
+									"type": "String"
+								}
+							}
+						]
 					}
 				},
 				"inputs": [
