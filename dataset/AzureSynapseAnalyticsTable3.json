@@ -10,7 +10,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "retail",
-			"table": "products_tgt"
+			"table": "product_dynamic"
 		}
 	}
 }
