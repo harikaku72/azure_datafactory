@@ -10,7 +10,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "products.csv",
+				"fileName": {
+					"value": "@concat('products_',formatDateTime(utcNow(),'yyyyMMdd'),'.csv')",
+					"type": "Expression"
+				},
 				"folderPath": "source",
 				"container": "delta"
 			},
