@@ -1,47 +1,7 @@
 {
-	"name": "pipeline1",
+	"name": "pipeline_multiple_files",
 	"properties": {
 		"activities": [
-			{
-				"name": "Copy data1",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "ForEach1",
-						"dependencyConditions": [
-							"Completed"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"sink": {
-						"type": "DelimitedTextSink",
-						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
-						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
-						}
-					},
-					"enableStaging": false
-				},
-				"outputs": [
-					{
-						"referenceName": "src_multiple_file",
-						"type": "DatasetReference"
-					}
-				]
-			},
 			{
 				"name": "Filter1",
 				"type": "Filter",
