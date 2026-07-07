@@ -27,6 +27,9 @@
 				}
 			],
 			"scriptLines": [
+				"parameters{",
+				"     parameter1 as string ($parameter1)",
+				"}",
 				"source(output(",
 				"          product_id as string,",
 				"          product_name as string,",
