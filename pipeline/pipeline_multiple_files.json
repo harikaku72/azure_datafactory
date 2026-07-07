@@ -108,13 +108,7 @@
 							"inputs": [
 								{
 									"referenceName": "src_multiple_file",
-									"type": "DatasetReference",
-									"parameters": {
-										"file_name": {
-											"value": "@dataset().FileName",
-											"type": "Expression"
-										}
-									}
+									"type": "DatasetReference"
 								}
 							],
 							"outputs": [
