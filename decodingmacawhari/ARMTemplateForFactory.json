@@ -493,14 +493,7 @@
 							"sink": {
 								"type": "SqlDWSink",
 								"allowCopyCommand": true,
-								"copyCommandSettings": {
-									"additionalOptions": {
-										"runid": {
-											"value": "@pipeline().RunId",
-											"type": "Expression"
-										}
-									}
-								},
+								"copyCommandSettings": {},
 								"tableOption": "autoCreate",
 								"disableMetricsCollection": false
 							},
