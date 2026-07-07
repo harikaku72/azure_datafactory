@@ -19,7 +19,10 @@
 						"referenceName": "dataflow1",
 						"type": "DataFlowReference",
 						"parameters": {
-							"parameter1": "@pipeline().RunId"
+							"parameter1": {
+								"value": "'@{pipeline().parameters.p_runid}'",
+								"type": "Expression"
+							}
 						}
 					},
 					"staging": {
