@@ -119,6 +119,12 @@
 				]
 			}
 		],
+		"parameters": {
+			"runid": {
+				"type": "string",
+				"defaultValue": "@pipeline().RunId"
+			}
+		},
 		"annotations": []
 	}
 }
