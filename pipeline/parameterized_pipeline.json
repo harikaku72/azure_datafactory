@@ -20,7 +20,7 @@
 						"additionalColumns": [
 							{
 								"name": "runid",
-								"value": "@pipeline().Runid"
+								"value": "@pipeline().RunId"
 							}
 						],
 						"storeSettings": {
