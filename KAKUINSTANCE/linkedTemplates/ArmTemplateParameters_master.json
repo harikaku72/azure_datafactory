@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "KAKUINSTANCE"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureBlobStorage2_connectionString": {
+			"value": ""
+		},
+		"AzureDatabricks1_accessToken": {
+			"value": ""
+		},
+		"AzureDatabricksDeltaLake1_accessToken": {
+			"value": ""
+		},
+		"AzureSynapseAnalytics1_password": {
+			"value": ""
+		},
+		"GoogleBigQuery1_keyFileContent": {
+			"value": ""
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"value": "0626-015520-h9q2c71e"
+		},
+		"AzureSynapseAnalytics1_properties_typeProperties_server": {
+			"value": "harikakus.sql.azuresynapse.net"
+		},
+		"AzureSynapseAnalytics1_properties_typeProperties_database": {
+			"value": "retail"
+		},
+		"AzureSynapseAnalytics1_properties_typeProperties_userName": {
+			"value": "sqladminuser"
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"value": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
+		},
+		"trigger2_properties_typeProperties_scope": {
+			"value": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
+		},
+		"triggerhari_properties_typeProperties_scope": {
+			"value": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
