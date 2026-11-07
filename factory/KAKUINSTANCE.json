@@ -1,0 +1,15 @@
+{
+	"name": "KAKUINSTANCE",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e228a973-3af4-4e9c-9cad-9b23cddb7d08",
+		"tenantId": "712b635a-685f-43f7-8bec-38fdfdf857eb"
+	}
+}
