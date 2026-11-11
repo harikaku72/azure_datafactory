@@ -59,6 +59,10 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
 		},
+		"trigger3_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/b687f9d1-bb61-4a3c-9dc1-3887d6e30de9/resourceGroups/KAKU-RESOURCE/providers/Microsoft.Storage/storageAccounts/harikaku"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -162,6 +166,9 @@
 					},
 					"triggerhari_properties_typeProperties_scope": {
 						"value": "[parameters('triggerhari_properties_typeProperties_scope')]"
+					},
+					"trigger3_properties_typeProperties_scope": {
+						"value": "[parameters('trigger3_properties_typeProperties_scope')]"
 					}
 				}
 			},
