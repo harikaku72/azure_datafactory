@@ -1,6 +1,7 @@
 {
 	"name": "pipeline_try_derivedcol",
 	"properties": {
+		"description": "pipeline_try_derivedcol",
 		"activities": [
 			{
 				"name": "Dataflow_tyout",
