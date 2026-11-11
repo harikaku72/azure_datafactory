@@ -1,0 +1,24 @@
+{
+	"name": "trigger3",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline_try_derivedcol",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/delta/blobs/Source/customers.csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/b687f9d1-bb61-4a3c-9dc1-3887d6e30de9/resourceGroups/KAKU-RESOURCE/providers/Microsoft.Storage/storageAccounts/harikaku",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
