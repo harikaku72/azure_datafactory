@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "customers_derived_tgt",
+						"referenceName": "customers_trdt_derived",
 						"type": "DatasetReference"
 					},
 					"name": "sink1",
