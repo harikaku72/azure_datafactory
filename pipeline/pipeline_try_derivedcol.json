@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "pipeline_try_derivedcol",
 	"properties": {
 		"activities": [
 			{
