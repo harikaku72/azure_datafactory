@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'AzureSynapseAnalytics1'"
 		},
+		"AzureSynapseAnalytics2_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSynapseAnalytics2'"
+		},
 		"GoogleBigQuery1_keyFileContent": {
 			"type": "secureString",
 			"metadata": "Secure string for 'keyFileContent' of 'GoogleBigQuery1'"
@@ -47,6 +51,18 @@
 			"type": "string",
 			"defaultValue": "sqladminuser"
 		},
+		"AzureSynapseAnalytics2_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "harikaku.sql.azuresynapse.net"
+		},
+		"AzureSynapseAnalytics2_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "retail"
+		},
+		"AzureSynapseAnalytics2_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sqladminuser"
+		},
 		"trigger1_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
@@ -55,13 +71,13 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
 		},
-		"triggerhari_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
-		},
 		"trigger3_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/b687f9d1-bb61-4a3c-9dc1-3887d6e30de9/resourceGroups/KAKU-RESOURCE/providers/Microsoft.Storage/storageAccounts/harikaku"
+		},
+		"triggerhari_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
 		}
 	},
 	"variables": {
@@ -2414,6 +2430,28 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureSynapseAnalytics2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDW",
+				"typeProperties": {
+					"server": "[parameters('AzureSynapseAnalytics2_properties_typeProperties_server')]",
+					"database": "[parameters('AzureSynapseAnalytics2_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('AzureSynapseAnalytics2_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('AzureSynapseAnalytics2_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/GoogleBigQuery1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -2490,6 +2528,36 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pipeline_multiple_files')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trigger3')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pipeline_try_derivedcol",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/delta/blobs/Source/customers.csv",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('trigger3_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pipeline_try_derivedcol')]"
 			]
 		},
 		{
@@ -2824,33 +2892,222 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/trigger3')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
+			"name": "[concat(parameters('factoryName'), '/pipeline_synapse_kaku1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
+				"activities": [
 					{
-						"pipelineReference": {
-							"referenceName": "pipeline_try_derivedcol",
-							"type": "PipelineReference"
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
 						},
-						"parameters": {}
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "SqlDWSink",
+								"allowCopyCommand": true,
+								"copyCommandSettings": {}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "customer_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "customer_id",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "first_name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "first_name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "last_name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "last_name",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "email",
+											"type": "String"
+										},
+										"sink": {
+											"name": "email",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "phone",
+											"type": "String"
+										},
+										"sink": {
+											"name": "phone",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "city",
+											"type": "String"
+										},
+										"sink": {
+											"name": "city",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "state",
+											"type": "String"
+										},
+										"sink": {
+											"name": "state",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "country",
+											"type": "String"
+										},
+										"sink": {
+											"name": "country",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "created_at",
+											"type": "String"
+										},
+										"sink": {
+											"name": "created_at",
+											"type": "DateTime"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "customers_src",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "synapsecustomer",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
-				"type": "BlobEventsTrigger",
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/customers_src')]",
+				"[concat(variables('factoryId'), '/datasets/synapsecustomer')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/synapsecustomer')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSynapseAnalytics2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlDWTable",
+				"schema": [
+					{
+						"name": "customer_id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "first_name",
+						"type": "varchar"
+					},
+					{
+						"name": "last_name",
+						"type": "varchar"
+					},
+					{
+						"name": "email",
+						"type": "varchar"
+					},
+					{
+						"name": "phone",
+						"type": "varchar"
+					},
+					{
+						"name": "city",
+						"type": "varchar"
+					},
+					{
+						"name": "state",
+						"type": "varchar"
+					},
+					{
+						"name": "country",
+						"type": "varchar"
+					},
+					{
+						"name": "created_at",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
 				"typeProperties": {
-					"blobPathBeginsWith": "/delta/blobs/Source/customers.csv",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('trigger3_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
+					"schema": "retail",
+					"table": "customer"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pipeline_try_derivedcol')]"
+				"[concat(variables('factoryId'), '/linkedServices/AzureSynapseAnalytics2')]"
 			]
 		}
 	]

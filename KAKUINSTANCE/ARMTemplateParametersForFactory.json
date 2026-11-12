@@ -20,6 +20,9 @@
 		"AzureSynapseAnalytics1_password": {
 			"value": ""
 		},
+		"AzureSynapseAnalytics2_password": {
+			"value": ""
+		},
 		"GoogleBigQuery1_keyFileContent": {
 			"value": ""
 		},
@@ -35,17 +38,26 @@
 		"AzureSynapseAnalytics1_properties_typeProperties_userName": {
 			"value": "sqladminuser"
 		},
+		"AzureSynapseAnalytics2_properties_typeProperties_server": {
+			"value": "harikaku.sql.azuresynapse.net"
+		},
+		"AzureSynapseAnalytics2_properties_typeProperties_database": {
+			"value": "retail"
+		},
+		"AzureSynapseAnalytics2_properties_typeProperties_userName": {
+			"value": "sqladminuser"
+		},
 		"trigger1_properties_typeProperties_scope": {
 			"value": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
 		},
 		"trigger2_properties_typeProperties_scope": {
 			"value": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
 		},
-		"triggerhari_properties_typeProperties_scope": {
-			"value": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
-		},
 		"trigger3_properties_typeProperties_scope": {
 			"value": "/subscriptions/b687f9d1-bb61-4a3c-9dc1-3887d6e30de9/resourceGroups/KAKU-RESOURCE/providers/Microsoft.Storage/storageAccounts/harikaku"
+		},
+		"triggerhari_properties_typeProperties_scope": {
+			"value": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
 		}
 	}
 }
