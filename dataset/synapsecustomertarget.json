@@ -50,7 +50,7 @@
 		],
 		"typeProperties": {
 			"schema": "retail",
-			"table": "customers"
+			"table": "customer"
 		}
 	}
 }
