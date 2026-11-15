@@ -35,13 +35,17 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'keyFileContent' of 'GoogleBigQuery1'"
 		},
+		"GoogleBigQuery2_keyFileContent": {
+			"type": "secureString",
+			"metadata": "Secure string for 'keyFileContent' of 'GoogleBigQuery2'"
+		},
 		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
 			"type": "string",
 			"defaultValue": "0626-015520-h9q2c71e"
 		},
 		"AzureSynapseAnalytics1_properties_typeProperties_server": {
 			"type": "string",
-			"defaultValue": "harikakus.sql.azuresynapse.net"
+			"defaultValue": "harikaku.sql.azuresynapse.net"
 		},
 		"AzureSynapseAnalytics1_properties_typeProperties_database": {
 			"type": "string",
@@ -72,6 +76,10 @@
 			"defaultValue": "/subscriptions/a0e8c69f-c05e-4f6d-8d91-0b94daadea88/resourceGroups/my_learning/providers/Microsoft.Storage/storageAccounts/harikaku"
 		},
 		"trigger3_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/b687f9d1-bb61-4a3c-9dc1-3887d6e30de9/resourceGroups/KAKU-RESOURCE/providers/Microsoft.Storage/storageAccounts/harikaku"
+		},
+		"trigger4_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/b687f9d1-bb61-4a3c-9dc1-3887d6e30de9/resourceGroups/KAKU-RESOURCE/providers/Microsoft.Storage/storageAccounts/harikaku"
 		},
@@ -126,6 +134,9 @@
 					},
 					"GoogleBigQuery1_keyFileContent": {
 						"value": "[parameters('GoogleBigQuery1_keyFileContent')]"
+					},
+					"GoogleBigQuery2_keyFileContent": {
+						"value": "[parameters('GoogleBigQuery2_keyFileContent')]"
 					},
 					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
@@ -191,6 +202,9 @@
 					},
 					"trigger2_properties_typeProperties_scope": {
 						"value": "[parameters('trigger2_properties_typeProperties_scope')]"
+					},
+					"trigger4_properties_typeProperties_scope": {
+						"value": "[parameters('trigger4_properties_typeProperties_scope')]"
 					},
 					"triggerhari_properties_typeProperties_scope": {
 						"value": "[parameters('triggerhari_properties_typeProperties_scope')]"
